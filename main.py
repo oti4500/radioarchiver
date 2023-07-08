@@ -7,6 +7,8 @@ livestream_url = "http://example.com/livestream"  # Replace with the actual audi
 output_directory = "/your/archive"  # Directory where the archived MP3 files will be saved
 conversion_command = ["ffmpeg", "-i", "", "-c:a", "libmp3lame", "-b:a", "128k", ""]
 
+radioname = "" # Radiostream name (or any name of the archive)
+
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
 
@@ -29,7 +31,7 @@ archiving_duration = 60 * 60 * 24  # 24 hours
 
 # Generate output file path
 current_timestamp = time.strftime("%Y%m%d-%H%M%S")
-output_file = os.path.join(output_directory, f"archive_{current_timestamp}.mp3")
+output_file = os.path.join(output_directory, f"{radioname}_archive_{current_timestamp}.mp3")
 
 # Start recording the livestream
 ffmpeg_command = ["ffmpeg", "-i", livestream_url, "-c:a", "copy", "-t", str(archiving_duration), output_file]
