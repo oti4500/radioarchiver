@@ -13,7 +13,7 @@ archive_bucket = "your_bucket_name"  # Your Internet Archive bucket name
 archive_access_key = "your_access_key"  # Your Internet Archive access key
 archive_secret_key = "your_secret_key"  # Your Internet Archive secret key
 
-item_identifier = "pulzusfm921"  # Identifier of the archive item on archive.org
+item_identifier = "identifier"  # Identifier of the archive item on archive.org
 
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
