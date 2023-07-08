@@ -9,7 +9,7 @@ output_directory = "/path/to/archive"  # Directory where the archived MP3 files 
 conversion_command = ["ffmpeg", "-i", "", "-c:a", "libmp3lame", "-b:a", "128k", ""]
 
 archive_s3_endpoint = "https://s3.us.archive.org"  # ias3 API endpoint
-archive_bucket = "your_bucket_name"  # Your Internet Archive bucket name
+archive_bucket = "http://s3.us.archive.org/{identifier}"  # Your Internet Archive bucket name
 archive_access_key = "your_access_key"  # Your Internet Archive access key
 archive_secret_key = "your_secret_key"  # Your Internet Archive secret key
 
