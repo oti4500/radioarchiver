@@ -14,6 +14,7 @@ archive_access_key = "your_access_key"  # Your Internet Archive access key
 archive_secret_key = "your_secret_key"  # Your Internet Archive secret key
 
 item_identifier = "identifier"  # Identifier of the archive item on archive.org
+radioname = "" # Radiostream name (or any name of the archive)
 
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
@@ -37,7 +38,7 @@ archiving_duration = 60 * 60 * 24  # 24 hours
 
 # Generate output file path
 current_timestamp = time.strftime("%Y%m%d-%H%M%S")
-output_file = os.path.join(output_directory, f"archive_{current_timestamp}.mp3")
+output_file = os.path.join(output_directory, f"{radioname}_archive_{current_timestamp}.mp3")
 
 # Start recording the livestream
 ffmpeg_command = ["ffmpeg", "-i", livestream_url, "-c:a", "copy", "-t", str(archiving_duration), output_file]
@@ -62,8 +63,8 @@ headers = {
 
 metadata = {
     "metadata": {
-        "collection": "your_collection_name",
-        "mediatype": "audio"
+        "collection": {radioname},
+        "mediatype": "opensource_audio"
     }
 }
 
