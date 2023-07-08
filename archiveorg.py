@@ -9,11 +9,11 @@ output_directory = "/path/to/archive"  # Directory where the archived MP3 files 
 conversion_command = ["ffmpeg", "-i", "", "-c:a", "libmp3lame", "-b:a", "128k", ""]
 
 archive_s3_endpoint = "https://s3.us.archive.org"  # ias3 API endpoint
-archive_bucket = "http://s3.us.archive.org/{identifier}"  # Your Internet Archive bucket name
+archive_bucket = "your_bucket_name"  # Your Internet Archive bucket name
 archive_access_key = "your_access_key"  # Your Internet Archive access key
 archive_secret_key = "your_secret_key"  # Your Internet Archive secret key
 
-item_identifier = "identifier"  # Identifier of the archive item on archive.org
+item_identifier = "pulzusfm921"  # Identifier of the archive item on archive.org
 
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
@@ -60,8 +60,15 @@ headers = {
     "authorization": f"LOW {archive_access_key}:{archive_secret_key}"
 }
 
+metadata = {
+    "metadata": {
+        "collection": "your_collection_name",
+        "mediatype": "audio"
+    }
+}
+
 with open(upload_file_path, "rb") as file:
-    response = requests.put(upload_url, headers=headers, data=file)
+    response = requests.put(upload_url, headers=headers, data=file, params=metadata)
     if response.status_code == 200:
         print("Upload successful.")
     else:
