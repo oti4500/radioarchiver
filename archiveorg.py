@@ -13,6 +13,8 @@ archive_bucket = "your_bucket_name"  # Your Internet Archive bucket name
 archive_access_key = "your_access_key"  # Your Internet Archive access key
 archive_secret_key = "your_secret_key"  # Your Internet Archive secret key
 
+item_identifier = "identifier"  # Identifier of the archive item on archive.org
+
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
 
@@ -52,7 +54,7 @@ print("Archived:", output_file[:-4] + ".mp3")
 upload_file_path = output_file[:-4] + ".mp3"
 upload_file_name = os.path.basename(upload_file_path)
 
-upload_url = f"{archive_s3_endpoint}/{archive_bucket}/{upload_file_name}"
+upload_url = f"{archive_s3_endpoint}/{archive_bucket}/{item_identifier}/{upload_file_name}"
 headers = {
     "x-amz-auto-make-bucket": "1",
     "authorization": f"LOW {archive_access_key}:{archive_secret_key}"
